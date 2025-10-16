@@ -1,7 +1,40 @@
 title: YYRP Rules
-description: YYRP Rules
-github : [metadata]
+description: YYRPサーバーのルール集
+github: [metadata]
 github-username: dev-wings
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-remote-theme
+
+# ナビゲーション設定
+navigation:
+  - title: ホーム
+    url: /
+  - title: 基本ルール
+    url: /docs/getting-started/
+  - title: 職業関連
+    url: /docs/jobs/
+  - title: 犯罪ルール
+    url: /docs/crime/
+
+# デフォルト設定
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# サイト設定
+lang: ja
+timezone: Asia/Tokyo
+
+# 検索設定
+search: true
+
+# コメント設定（無効）
+comments: false
+
+# ソーシャルメディア設定
+social:
+  github: dev-wings
