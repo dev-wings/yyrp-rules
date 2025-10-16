@@ -1,0 +1,40 @@
+<!-- パンくずメニュー -->
+<nav aria-label="パンくずメニュー">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{{ '/' | relative_url }}">ホーム</a>
+    </li>
+    {% assign crumbs = page.url | split: '/' %}
+    {% for crumb in crumbs offset: 1 %}
+      {% if forloop.last %}
+        <li class="breadcrumb-item active" aria-current="page">
+          {{ page.title }}
+        </li>
+      {% else %}
+        {% assign crumb_limit = forloop.index | plus: 1 %}
+        {% assign crumb_url = '' %}
+        {% for crumb_part in crumbs limit: crumb_limit %}
+          {% if crumb_part != '' %}
+            {% assign crumb_url = crumb_url | append: '/' | append: crumb_part %}
+          {% endif %}
+        {% endfor %}
+        <li class="breadcrumb-item">
+          <a href="{{ crumb_url | relative_url }}">
+            {% case crumb %}
+              {% when 'docs' %}
+                ドキュメント
+              {% when 'getting-started' %}
+                基本ルール
+              {% when 'jobs' %}
+                職業関連
+              {% when 'crime' %}
+                犯罪ルール
+              {% else %}
+                {{ crumb | capitalize }}
+            {% endcase %}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>
